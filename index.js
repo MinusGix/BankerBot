@@ -404,13 +404,6 @@ addCommand('subtract', 'Usage:\n%prefix%%cmdname% <number> @<user or roles>\nSub
     return args.reply("Sorry, but you aren't allowed to do that. Ask a Banker to do it.");
 });
 
-addCommand('nya', 'Usage:\n%prefix%%cmdname%', function(args){
-	return args.reply('https://cdn.discordapp.com/attachments/234696507352154112/317349793926217728/imgres.gif');
-});
-
-addCommand('roll', 'Usage:\n%prefix%%cmdname%\nRolls a d20\n%prefix%%cmdname% <max>\n gets a random number between 1 and <max>', function(args){
-	return args.reply(Math.floor(Math.random()*(!args.params[0] ? 20:Number(args.params[0]))+1));
-});
 
 /*addCommand('give', 'Usage:\n%prefix%%cmdname% amount <user>', function(args) {
     let num = Number(args.params[0]);
