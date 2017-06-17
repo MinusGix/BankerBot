@@ -1,0 +1,5 @@
+{
+    "bot_token": "replace this text with the bot token, between the <>",
+    "prefix": "b!",
+    "editRole": "banker"
+}
