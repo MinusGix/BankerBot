@@ -405,7 +405,7 @@ addCommand('subtract', 'Usage:\n%prefix%%cmdname% <number> @<user or roles>\nSub
 });
 
 
-/*addCommand('give', 'Usage:\n%prefix%%cmdname% amount <user>', function(args) {
+addCommand('give', 'Usage:\n%prefix%%cmdname% amount <user>', function(args) {
     let num = Number(args.params[0]);
 
     if (isNaN(num)) {
@@ -415,18 +415,34 @@ addCommand('subtract', 'Usage:\n%prefix%%cmdname% <number> @<user or roles>\nSub
     var users = args.msg.mentions.users.array();
 
     if (users.length === 0) {
-        return args.reply("Please give a user to give Cookies to.");
+        return args.reply("Please choose a user to give Cookies to.");
     }
 
     if (users.length > 1) {
-        return args.reply("Please only give one user to give Cookies to.");
+        return args.reply("Please only choose one user to give Cookies to.");
     }
 
     if (users.length === 1) {
+        if(Points[args.msg.author.id] - num < 0) {
+            return args.reply("You don't have enough Cookies to do that!");
+        }
+
+        let user = users[0];
+
+        if(!Points[user.id]) {
+            Points[user.id] = 0;
+        }
+
+        Points[args.msg.author.id] -= num;
+        Points[user.id] += num;
+
+        writeJSON(__dirname + '/JSON/points.json', Points);
+
+        return args.reply(`gave ${user} ${num} Cookie(s)!`);
 
     } else {
-        return args.reply("")
+        return args.reply("Please use the command correctly.");
     }
-});*/
+});
 
 Client.login(Config.bot_token);
